@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   btnReset.addEventListener('click', function(e) {
     e.preventDefault();
-    
+
     resetFormulario();
   })
 
@@ -43,6 +43,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
       resetFormulario();
 
+      // Crear laerta de mensaje enviado
+      const alertaExito = document.createElement('P');
+      alertaExito.classList.add('bg-green-500', 'text-white', 'p-2', 'text-center', 'rounded-ls', 'mt-10', 'font-bold', 'text-sm', 'uppercase');
+      alertaExito.textContent = 'Mensaje enviado exitosamente';
+
+      formulario.appendChild(alertaExito);
+      setTimeout(() => {
+        alertaExito.remove();
+      }, 3000); 
     }, 3000);
   }
 
