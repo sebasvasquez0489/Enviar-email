@@ -15,11 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const formulario = document.querySelector('#formulario');
   const btnSubmit = document.querySelector('#formulario button[type="submit"');
   const btnReset = document.querySelector('#formulario button[type="reset"');
+  const spinner = document.querySelector('#spinner');
   
   // Asignamos eventos. 
   inputEmail.addEventListener('input', validar);
   inputAsunto.addEventListener('input', validar);
   inputMensaje.addEventListener('input', validar);
+
+  formulario.addEventListener('submit', enviarEmail);
 
   btnReset.addEventListener('click', function(e) {
     e.preventDefault();
@@ -31,6 +34,20 @@ document.addEventListener('DOMContentLoaded', function() {
     formulario.reset();
     comprobarEmail();
   })
+
+  function enviarEmail(e) {
+    e.preventDefault();
+
+    spinner.classList.add('flex');
+    spinner.classList.remove('hidden');
+
+    //Simulamos envio por un tiempo con el spinner
+    setTimeout(() => {
+      spinner.classList.remove('flex');
+      spinner.classList.add('hidden');
+    }, 3000);
+
+  }
 
   //Creamos funciones para su validación.
   function validar(e){
@@ -50,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Asignar valores al Objeto
     email[e.target.name] = e.target.value.trim().toLowerCase();
-    console.log(email);
     // Comprobar el objeto email
     comprobarEmail();
   }
